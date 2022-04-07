@@ -87,12 +87,10 @@ When we add an entity and needs to notify the server for the same we use **entry
 
 `entryDeleted({"eventData" : data})`
 
-
 ###  Updating an Entity
 When we add an entity and needs to notify the server for the same we use **entryAdded**  method
 
 `entryUpdated({"eventData" : data})`
-
 
 ###  Cancelling an Entity
 When we add an entity and needs to notify the server for the same we use **entryAdded**  method
@@ -100,6 +98,5 @@ When we add an entity and needs to notify the server for the same we use **entry
 `entryCancelled({"eventData" : data})`
 <br/>
 
->NOTE : These methods expects an ***object*** as a parameter having property **eventData**. The *data* passed as a value of this property can be object, string or any valid<sup>*</sup> data type.
-
->Valid data type : Inside the function we use **JSON.stringify**, any data type which can be parsed under this method is a valid data type.
+>NOTE : These methods expects an ***object*** as a parameter having property **eventData**. The *data* passed as a value of this property is an JSON object.
+> **entryDeleted** and **entryUpdated** method expects an "ID" property inside the data object.
