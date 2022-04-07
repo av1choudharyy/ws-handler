@@ -14,7 +14,7 @@ Code for importing the methods in your page
 
 `import {webSocketHandler,entryAdded,entryCancelled,entryDeleted,entryUpdated} from 'ws-handler';`
 
-### Set App Name and ID Array
+### Set App Name, ID Array and URL
 
 The app name is sent during the creation of the connection and the idArray is used to send the list of attached entities to the same connection.
 The URL is the endpoint url of the server.
