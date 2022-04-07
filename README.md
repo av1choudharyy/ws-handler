@@ -17,10 +17,12 @@ Code for importing the methods in your page
 ### Set App Name and ID Array
 
 The app name is sent during the creation of the connection and the idArray is used to send the list of attached entities to the same connection.
+The URL is the endpoint url of the server.
 
 ```
 const AppName = "appName"
 const [idArray,setIdArry] = React.useState([])
+const URL = url
 ```
 
 ### Declare a function
@@ -58,7 +60,7 @@ On successfully receiving a message, we can access the same from data property o
 
 For sending a connection request, we need to use the webSocketHandler method of the library as follow
 ```
-const connectionObject = {"AppName" : AppName, "idArray" : idArray}
+const connectionObject = {"URL" : URL, "AppName" : AppName, "idArray" : idArray}
 webSocketHandler(connectionObject,{socketHandler})
 ```
 
