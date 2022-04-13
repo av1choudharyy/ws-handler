@@ -3,7 +3,7 @@ let socket = {
 }
 let array =[];
 let appName;
-export const webSocketHandler = (props,handler) =>{
+export const webSocketHandler = async (props,handler) =>{
     function sendData (data) {
         handler.socketHandler(data)
     }
@@ -26,13 +26,16 @@ export const webSocketHandler = (props,handler) =>{
     })
     if(props.idArray.length > 0){
         console.log(`Total ${props.idArray.length} Ids attached to connection : ` + props.idArray);
-        let connectionDetails = {"action":"saveConnectionDetails","AppName":props.AppName,"idArray":props.idArray}
+        let connectionDetails = {"action":"saveConnectionDetails","AppName":appName,"idArray":array}
         saveConnectionDetails(connectionDetails)
     }
 }
 
 const onSocketOpen = (event,props) => {
     props.sendData({"type":event.type});
+    let connectionDetails = {"action":"saveConnectionDetails","AppName":appName,"idArray":array}
+    saveConnectionDetails(connectionDetails)
+    console.log("Connection details saved")
 }
 
 const onSocketMessage = (event,props) => {

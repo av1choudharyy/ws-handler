@@ -72,7 +72,7 @@ Now it will be better to write this in useEffect hook as whenever the idArray wi
 So the complete code for establishing a connection will be 
 ```
 useEffect(async () => {
-	const connectionObject ={"AppName":AppName,"idArray":idArray}
+	const connectionObject = {"URL" : URL, "AppName" : AppName, "idArray" : idArray}
 	webSocketHandler(connectionObject,{socketHandler});
 },[idArray])
 ```
