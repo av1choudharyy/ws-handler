@@ -2,12 +2,12 @@ let socket = {
     readyState:null
 }
 let array =[];
-let appName;
+let entityName;
 export const webSocketHandler = async (props,handler) =>{
     function sendData (data) {
         handler.socketHandler(data)
     }
-    appName = props.AppName
+    entityName = props.entityName
     if(socket.readyState === null || socket.readyState === 3){
         socket = new WebSocket(props.URL);
         socket.addEventListener('open',(event) => {onSocketOpen(event,{sendData})});
@@ -26,14 +26,14 @@ export const webSocketHandler = async (props,handler) =>{
     })
     if(props.idArray.length > 0){
         console.log(`Total ${props.idArray.length} Ids attached to connection : ` + props.idArray);
-        let connectionDetails = {"action":"saveConnectionDetails","AppName":appName,"idArray":array}
+        let connectionDetails = {"action":"saveConnectionDetails","entityName":entityName,"idArray":array}
         saveConnectionDetails(connectionDetails)
     }
 }
 
 const onSocketOpen = (event,props) => {
     props.sendData({"type":event.type});
-    let connectionDetails = {"action":"saveConnectionDetails","AppName":appName,"idArray":array}
+    let connectionDetails = {"action":"saveConnectionDetails","entityName":entityName,"idArray":array}
     saveConnectionDetails(connectionDetails)
     console.log("Connection details saved")
 }
@@ -58,7 +58,7 @@ const saveConnectionDetails = (props) =>{
 export const entryAdded = (props) =>{
     props.action = "sendEvents"
     props.eventType = "entryAdded";
-    props.appName = appName;
+    props.entityName = entityName;
     if(socket.readyState===WebSocket.OPEN)
         socket.send(JSON.stringify(props))
 }
@@ -66,7 +66,7 @@ export const entryAdded = (props) =>{
 export const entryUpdated = (props) =>{
     props.action = "sendEvents"
     props.eventType = "entryUpdated";
-    props.appName = appName;
+    props.entityName = entityName;
     if(socket.readyState===WebSocket.OPEN)
         socket.send(JSON.stringify(props))
 }
@@ -74,7 +74,7 @@ export const entryUpdated = (props) =>{
 export const entryDeleted = (props) =>{
     props.action = "sendEvents"
     props.eventType = "entryDeleted";
-    props.appName = appName;
+    props.entityName = entityName;
     if(socket.readyState===WebSocket.OPEN)
         socket.send(JSON.stringify(props))
 }
@@ -82,7 +82,7 @@ export const entryDeleted = (props) =>{
 export const entryCancelled = (props) =>{
     props.action = "sendEvents"
     props.eventType = "entryCancelled";
-    props.appName = appName;
+    props.entityName = entityName;
     if(socket.readyState===WebSocket.OPEN)
         socket.send(JSON.stringify(props))
 }

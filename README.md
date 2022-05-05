@@ -16,11 +16,11 @@ Code for importing the methods in your page
 
 ### Set App Name, ID Array and URL
 
-The app name is sent during the creation of the connection and the idArray is used to send the list of attached entities to the same connection.
+The entity name is sent during the creation of the connection and the idArray is used to send the list of attached entities to the same connection.
 The URL is the endpoint url of the server.
 
 ```
-const AppName = "appName"
+const entityName = "entityName"
 const [idArray,setIdArry] = React.useState([])
 const URL = url
 ```
@@ -60,19 +60,19 @@ On successfully receiving a message, we can access the same from data property o
 
 For sending a connection request, we need to use the webSocketHandler method of the library as follow
 ```
-const connectionObject = {"URL" : URL, "AppName" : AppName, "idArray" : idArray}
+const connectionObject = {"URL" : URL, "entityName" : entityName, "idArray" : idArray}
 webSocketHandler(connectionObject,{socketHandler})
 ```
 
 Here we called the module and send two parameters 
-- First parameter is an **object** containing the AppName and idArray
+- First parameter is an **object** containing the entityName and idArray
 - Second parameter is the **function** which will be handling the events received from the library
 
 Now it will be better to write this in useEffect hook as whenever the idArray will change the subscribed list of entities will be sent again to the backend.
 So the complete code for establishing a connection will be 
 ```
 useEffect(async () => {
-	const connectionObject = {"URL" : URL, "AppName" : AppName, "idArray" : idArray}
+	const connectionObject = {"URL" : URL, "entityName" : entityName, "idArray" : idArray}
 	webSocketHandler(connectionObject,{socketHandler});
 },[idArray])
 ```
