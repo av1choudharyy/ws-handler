@@ -86,3 +86,8 @@ export const entryCancelled = (props) =>{
     if(socket.readyState===WebSocket.OPEN)
         socket.send(JSON.stringify(props))
 }
+
+export const disconnect = () =>{
+    if(socket.readyState===WebSocket.OPEN)
+        socket.close()
+}
